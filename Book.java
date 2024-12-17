@@ -1,6 +1,6 @@
 public class Book {
-  private String title, author, isbn;
-  private boolean isAvailable;
+   String title, author, isbn;
+   boolean isAvailable;
 
   public Book(String title, String author, String isbn, boolean isAvailable) {
       this.title = title;
