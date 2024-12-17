@@ -59,7 +59,22 @@ public class Main {
                     }
                     break;
 
+                case 4:
+                    System.out.print("Enter ISBN of book to update: ");
+                    isbn = sc.next();
+                    System.out.println("1: Update Title\n2: Update Author\n3: Update Availability");
+                    System.out.print("Enter your choice: ");
+                    int updateChoice = sc.nextInt();
+                    //sc.nextLine();
 
+                    library.updateBook(isbn, updateChoice);
+                    break;
+
+                case 5:
+                    System.out.print("Enter ISBN of book to remove: ");
+                    isbn = sc.next();
+                    library.removeBook(isbn);
+                    break;
 
                 case 0:
                     System.out.println("Exiting... Goodbye!");
