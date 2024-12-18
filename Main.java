@@ -14,25 +14,41 @@ public class Main {
             System.out.println("3: Search a Book");
             System.out.println("4: Update a Book");
             System.out.println("5: Remove a Book");
+            System.out.println("6: borrow book");
+            System.out.println("7: return book");
+            System.out.println("8: display All Available books ");
             System.out.println("0: Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
 
             switch (choice) {
+
                 case 1:
                     System.out.print("Enter ISBN: ");
                     String isbn = sc.next();
                     System.out.print("Enter Title: ");
                     String title = sc.next();
+                    sc.nextLine();
                     System.out.print("Enter Author: ");
-                    String author = sc.next();
-                    System.out.print("Is Available (true/false): ");
-                    boolean isAvailable = sc.nextBoolean();
+                    String author = sc.nextLine();
 
+                    boolean isAvailable = false;
+                    while (true) {
+                        System.out.print("Is Available (true/false): ");
+                        if (sc.hasNextBoolean()) {
+                            isAvailable = sc.nextBoolean();
+                            break;
+                        } else {
+                            System.out.println("Invalid input, please enter 'true' or 'false'.");
+                            sc.next();
+                        }
+                    }
 
                     library.addBook(new Book(title, author, isbn, isAvailable));
                     System.out.println("Book added successfully!");
                     break;
+
+
 
                 case 2:
                     System.out.println("Books in Library:");
@@ -40,32 +56,16 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.print("Enter Title (or press Enter to skip): ");
-                    title = sc.next();
-                    System.out.print("Enter ISBN (or press Enter to skip): ");
-                    isbn = sc.next();
-                    System.out.print("Enter Author (or press Enter to skip): ");
-                    author = sc.next();
-
-                    Book found = library.searchBook(
-                            title.isEmpty() ? null : title,
-                            isbn.isEmpty() ? null : isbn,
-                            author.isEmpty() ? null : author);
-
-                    if (found != null) {
-                        System.out.println("Book Found: " + found);
-                    } else {
-                        System.out.println("Book not found.");
-                    }
+                    library.search();
                     break;
 
                 case 4:
                     System.out.print("Enter ISBN of book to update: ");
                     isbn = sc.next();
+                    //sc.nextLine();
                     System.out.println("1: Update Title\n2: Update Author\n3: Update Availability");
                     System.out.print("Enter your choice: ");
                     int updateChoice = sc.nextInt();
-                    //sc.nextLine();
 
                     library.updateBook(isbn, updateChoice);
                     break;
@@ -75,6 +75,16 @@ public class Main {
                     isbn = sc.next();
                     library.removeBook(isbn);
                     break;
+                case 6:
+                    library.borrowBook();
+                    break;
+                case 7:
+                    library.returnBook();
+                    break;
+                case 8:
+                    library.displayFunAvailable();
+                    break;
+
 
                 case 0:
                     System.out.println("Exiting... Goodbye!");

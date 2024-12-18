@@ -2,9 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Library {
-     ArrayList<Book> books = new ArrayList<>();
-
-
+    ArrayList<Book> books = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
     public void addBook(Book book) {
         books.add(book);
     }
@@ -15,16 +14,34 @@ public class Library {
         }
     }
 
-    public Book searchBook(String title, String isbn, String author) {
+
+
+    public void search() {
+        String valSearch;
+        ArrayList<Book> stock = new ArrayList<>();
+        System.out.print("Enter title, ISBN, or author to search: ");
+
+        valSearch = sc.nextLine();
+
         for (Book book : books) {
-            if ((title != null && title.equals(book.getTitle())) ||
-                (isbn != null && isbn.equals(book.getIsbn())) ||
-                (author != null && author.equals(book.getAuthor()))) {
-                return book;
+            if (valSearch.equals(book.getTitle()) ||
+                    valSearch.equals(book.getIsbn()) ||
+                    valSearch.equals(book.getAuthor())) {
+                stock.add(book);
             }
         }
-        return null;
+
+        if (stock.isEmpty()) {
+            System.out.println(valSearch + " not found.");
+        } else {
+            for (Book book : stock) {
+                System.out.println(book);
+            }
+        }
     }
+
+
+
 
     public void updateBook(String isbn, int choice) {
         Scanner sc = new Scanner(System.in);
@@ -57,5 +74,71 @@ public class Library {
     public void removeBook(String isbn) {
         books.removeIf(book -> book.getIsbn().equals(isbn));
         System.out.println("Book removed successfully.");
+    }
+
+
+
+
+
+
+    void borrowBook(){
+        String title;
+        System.out.print("title : ");
+        title=sc.nextLine();
+        for(Book book : books)
+        {
+            if(title.equals(book.title)&&book.isAvailable){
+                book.isAvailable=false;
+                System.out.println("book Borrow successfully");
+
+            }else
+            {
+                System.out.println("the book already Borrowed");
+
+            }
+            break;
+        }
+
+    }
+    void returnBook( ){
+        String title;
+        System.out.print("title : ");
+        title=sc.nextLine();
+        for(Book book:books)
+        {
+            if(title.equals(book.title)&&!book.isAvailable)
+            {
+                book.isAvailable=true;
+                System.out.println("book returned successfully");
+
+            }else
+            {
+                System.out.println("the book already returned");
+
+            }
+            break;
+        }
+
+    }
+    void displayFunAvailable() {
+        ArrayList<Book>Avbooks=new ArrayList<>();
+        ArrayList<Book>Notbooks1=new ArrayList<>();
+        for (Book book : books) {
+            if (book.isAvailable) {
+                System.out.println("Available Books  ");
+                Avbooks.add(book);
+                System.out.println(Avbooks);
+            }
+        }for (Book book : books) {
+            if (!book.isAvailable) {
+                System.out.println("Books not Available");
+                Notbooks1.add(book);
+                System.out.println(Notbooks1);
+            }
+        }
+
+       //this.books.stream().filter(book -> book.isAvailable).forEach(System.out::println);
+
+
     }
 }
