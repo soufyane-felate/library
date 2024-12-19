@@ -41,43 +41,57 @@ public class Library {
     }
 
 
+   public void updateBook() {
+       Scanner sc = new Scanner(System.in);
+       String isbn;
+       boolean found = false;
+
+       System.out.print("Enter ISBN of book to update: ");
+       isbn = sc.nextLine();
+
+       for (Book book : books) {
+           if (book.getIsbn().equals(isbn)) {
+               found = true;
+
+               System.out.println("1: Update Title\n2: Update Author\n3: Update Availability");
+               System.out.print("Enter your choice: ");
+               int updateChoice = sc.nextInt();
+               sc.nextLine();
+
+               switch (updateChoice) {
+                   case 1:
+                       System.out.print("Enter new title: ");
+                       book.setTitle(sc.nextLine());
+                       break;
+                   case 2:
+                       System.out.print("Enter new author: ");
+                       book.setAuthor(sc.nextLine());
+                       break;
+                   case 3:
+                       System.out.print("Is the book available? (true/false): ");
+                       book.setAvailable(sc.nextBoolean());
+                       sc.nextLine();
+                       break;
+                   default:
+                       System.out.println("Invalid choice.");
+                       return;
+               }
+               System.out.println("Book updated successfully.");
+               break;
+           }
+       }
+
+       if (!found) {
+           System.out.println("Book not found.");
+       }
+   }
 
 
-    public void updateBook(String isbn, int choice) {
-        Scanner sc = new Scanner(System.in);
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
-                
-                switch (choice) {
-                    case 1:
-                        System.out.print("Enter new title: ");
-                        book.setTitle(sc.nextLine());
-                        break;
-                    case 2:
-                        System.out.print("Enter new author: ");
-                        book.setAuthor(sc.nextLine());
-                        break;
-                    case 3:
-                        System.out.print("Is the book available? (true/false): ");
-                        book.setAvailable(sc.nextBoolean());
-                        break;
-                    default:
-                        System.out.println("Invalid choice.");
-                }
-                System.out.println("Book updated successfully.");
-                return;
-            }
-        }
-        System.out.println("Book not found.");
-    }
 
     public void removeBook(String isbn) {
         books.removeIf(book -> book.getIsbn().equals(isbn));
         System.out.println("Book removed successfully.");
     }
-
-
-
 
 
 

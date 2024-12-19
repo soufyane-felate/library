@@ -60,14 +60,9 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.print("Enter ISBN of book to update: ");
-                    isbn = sc.next();
-                    //sc.nextLine();
-                    System.out.println("1: Update Title\n2: Update Author\n3: Update Availability");
-                    System.out.print("Enter your choice: ");
-                    int updateChoice = sc.nextInt();
 
-                    library.updateBook(isbn, updateChoice);
+
+                    library.updateBook();
                     break;
 
                 case 5:
