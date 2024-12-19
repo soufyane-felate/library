@@ -13,9 +13,9 @@ public class Book {
       return title;
   }
 
-  public void setTitle(String title) {
-      this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
   public String getAuthor() {
       return author;
@@ -40,6 +40,7 @@ public class Book {
   public void setAvailable(boolean available) {
       isAvailable = available;
   }
+
 
   @Override
   public String toString() {
