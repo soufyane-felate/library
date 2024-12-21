@@ -2,18 +2,24 @@
 
 class Book
 {
-  String title;
-String author,isbn ;
+  String isbn,title,author ;
   boolean isAvailable;
 
 
-  public Book(String title, String author, String isbn, boolean isAvailable) {
+  public Book( String isbn,String title, String author, boolean isAvailable) {
+    this.isbn = isbn;
     this.title = title;
     this.author = author;
-    this.isbn = isbn;
     this.isAvailable = isAvailable;
   }
 
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
+  }
   public String getTitle() {
     return title;
   }
@@ -27,50 +33,28 @@ String author,isbn ;
   }
 
   public void setauthor(String author) {
-    author = author;
+    this.author = author;
   }
 
-  public String getIsbn() {
-    return isbn;
-  }
 
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
-
-  public boolean isAvailable() {
+  public boolean getIsAvailable() {
     return isAvailable;
   }
 
   public void setAvailable(boolean isAvailable) {
-    isAvailable = isAvailable;
+    this.isAvailable = isAvailable;
   }
 
 
   @java.lang.Override
   public java.lang.String toString() {
     return "Book{" +
-            "title='" + title + '\'' +
+            "isbn='" + isbn + '\'' +
+            ", title='" + title + '\'' +
             ", author='" + author + '\'' +
-            ", isbn='" + isbn + '\'' +
             ", isAvailable=" + isAvailable +
             '}';
   }
-  void display()
 
-
-  {
-    System.out.println(    "title : "+title+"\n"+
-    "author : "+author+"\n"+
-     "isbn : "+isbn+"\n"+
-      "isAvailable : "+isAvailable);             
-  }
- void bortowBook()
- {
-    isAvailable=false;
-}
- void returnBook()
- {
-    isAvailable=true;
- }
+ 
 }
